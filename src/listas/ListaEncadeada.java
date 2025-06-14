@@ -61,7 +61,7 @@ public class ListaEncadeada {
         System.out.println("Null");
     }
 
-    private class No {
+    private static class No {
         int valor;
         No proximo;
 
