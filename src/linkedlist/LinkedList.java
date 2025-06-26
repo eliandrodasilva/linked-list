@@ -3,11 +3,13 @@ package linkedlist;
 public class LinkedList<T> {
 
     private Node<T> head;
+    private int size;
 
     public void addFirst(T value) {
         Node<T> newNode = new Node<>(value);
         newNode.next = head;
         head = newNode;
+        size++;
     }
 
     public void addMiddle(T value, T referenceValue) {
@@ -25,6 +27,7 @@ public class LinkedList<T> {
             Node<T> newNode = new Node<>(value);
             newNode.next = temp.next;
             temp.next = newNode;
+            size++;
         } else {
             System.out.println("Reference value not found in the list.");
         }
@@ -41,6 +44,7 @@ public class LinkedList<T> {
             temp = temp.next;
         }
         temp.next = new Node<>(value);
+        size++;
     }
 
     public void print() {
@@ -50,6 +54,19 @@ public class LinkedList<T> {
             temp = temp.next;
         }
         System.out.println("null");
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index: " + index);
+        Node<T> temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return temp.value;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     private static class Node<T> {
