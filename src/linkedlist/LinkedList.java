@@ -65,7 +65,7 @@ public class LinkedList<T> {
         return temp.value;
     }
 
-    public int getSize() {
+    public int size() {
         return size;
     }
 
