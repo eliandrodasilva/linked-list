@@ -1,6 +1,6 @@
 package linkedlist;
 
-public class GenericLinkedList<T> {
+public class LinkedList<T> {
 
     private Node<T> head;
 
