@@ -4,23 +4,6 @@ public class GenericLinkedList<T> {
 
     private Node<T> head;
 
-    public static void main(String[] args) {
-        Person person = new Person();
-        person.setName("Lúdica");
-        person.setAge(15);
-
-        GenericLinkedList<Object> list = new GenericLinkedList<>();
-        list.addFirst(3);
-        list.addLast(6);
-        list.addFirst(person);
-        list.addLast(9);
-        list.addLast("beautiful");
-        list.addFirst("heart");
-        list.addMiddle(10, 9);
-
-        list.print();
-    }
-
     public void addFirst(T value) {
         Node<T> newNode = new Node<>(value);
         newNode.next = head;
