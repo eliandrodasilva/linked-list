@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.NoSuchElementException;
+
 public class LinkedList<T> {
 
     private Node<T> head;
@@ -46,6 +48,48 @@ public class LinkedList<T> {
         temp.next = new Node<>(value);
         size++;
     }
+    public void remove(T value) {
+        ensureNotEmpty();
+
+        if (head.value.equals(value)) {
+            head = head.next;
+            size--;
+            return;
+        }
+        Node<T> temp = head;
+
+        while (temp.next != null) {
+            if(temp.next.value.equals(value)) {
+                temp.next = temp.next.next;
+                size--;
+                return;
+            }
+            temp = temp.next;
+        }
+        System.out.println("Value not found in the list.");
+    }
+
+    public void removeFirst() {
+        ensureNotEmpty();
+        head = head.next;
+        size--;
+    }
+
+    public void removeLast() {
+        ensureNotEmpty();
+
+        if (head.next == null) {
+            head = null;
+            size--;
+        } else {
+            Node<T> temp = head;
+            while (temp.next.next != null) {
+                temp = temp.next;
+            }
+            temp.next = null;
+            size--;
+        }
+    }
 
     public void print() {
         Node<T> temp = head;
@@ -67,6 +111,12 @@ public class LinkedList<T> {
 
     public int size() {
         return size;
+    }
+
+    private void ensureNotEmpty() {
+        if (head == null) {
+            throw new NoSuchElementException("List is empty");
+        }
     }
 
     private static class Node<T> {
