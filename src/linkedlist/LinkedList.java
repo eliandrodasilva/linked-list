@@ -14,7 +14,7 @@ public class LinkedList<T> {
         size++;
     }
 
-    public void addMiddle(T value, T referenceValue) {
+    public void addBefore(T value, T referenceValue) {
         if (head == null) {
             addFirst(value);
             return;
@@ -91,7 +91,7 @@ public class LinkedList<T> {
         }
     }
 
-    public void print() {
+    public void display() {
         Node<T> temp = head;
         while (temp != null) {
             System.out.print(temp.value + " -> ");
