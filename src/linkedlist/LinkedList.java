@@ -113,6 +113,19 @@ public class LinkedList<T> {
         return size;
     }
 
+    public boolean contains(T value) {
+        ensureNotEmpty();
+        Node<T> current = head;
+        for(int i = 0; i < size; i++) {
+            System.out.println(current.value + " --> " + value);
+            if(current.value == value) {
+                return true;
+            }
+            else current = current.next;
+        }
+        return false;
+    }
+
     private void ensureNotEmpty() {
         if (head == null) {
             throw new NoSuchElementException("List is empty");
