@@ -20,15 +20,15 @@ public class LinkedList<T> {
             return;
         }
 
-        Node<T> temp = head;
-        while (temp.next != null && !temp.next.value.equals(referenceValue)) {
-            temp = temp.next;
+        Node<T> current = head;
+        while (current.next != null && !current.next.value.equals(referenceValue)) {
+            current = current.next;
         }
 
-        if (temp.next != null) {
+        if (current.next != null) {
             Node<T> newNode = new Node<>(value);
-            newNode.next = temp.next;
-            temp.next = newNode;
+            newNode.next = current.next;
+            current.next = newNode;
             size++;
         } else {
             System.out.println("Reference value not found in the list.");
@@ -41,11 +41,11 @@ public class LinkedList<T> {
             return;
         }
 
-        Node<T> temp = head;
-        while (temp.next != null) {
-            temp = temp.next;
+        Node<T> current = head;
+        while (current.next != null) {
+            current = current.next;
         }
-        temp.next = new Node<>(value);
+        current.next = new Node<>(value);
         size++;
     }
     public void remove(T value) {
@@ -56,57 +56,63 @@ public class LinkedList<T> {
             size--;
             return;
         }
-        Node<T> temp = head;
+        Node<T> current = head;
 
-        while (temp.next != null) {
-            if(temp.next.value.equals(value)) {
-                temp.next = temp.next.next;
+        while (current.next != null) {
+            if(current.next.value.equals(value)) {
+                current.next = current.next.next;
                 size--;
                 return;
             }
-            temp = temp.next;
+            current = current.next;
         }
         System.out.println("Value not found in the list.");
     }
 
-    public void removeFirst() {
+    public T removeFirst() {
         ensureNotEmpty();
+        T value = head.value;
         head = head.next;
         size--;
+        return value;
     }
 
-    public void removeLast() {
+    public T removeLast() {
         ensureNotEmpty();
 
         if (head.next == null) {
+            T value = head.value;
             head = null;
             size--;
+            return value;
         } else {
-            Node<T> temp = head;
-            while (temp.next.next != null) {
-                temp = temp.next;
+            Node<T> current = head;
+            while (current.next.next != null) {
+                current = current.next;
             }
-            temp.next = null;
+            T value = current.next.value;
+            current.next = null;
             size--;
+            return value;
         }
     }
 
     public void display() {
-        Node<T> temp = head;
-        while (temp != null) {
-            System.out.print(temp.value + " -> ");
-            temp = temp.next;
+        Node<T> current = head;
+        while (current != null) {
+            System.out.print(current.value + " -> ");
+            current = current.next;
         }
         System.out.println("null");
     }
 
     public T get(int index) {
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index: " + index);
-        Node<T> temp = head;
+        Node<T> current = head;
         for (int i = 0; i < index; i++) {
-            temp = temp.next;
+            current = current.next;
         }
-        return temp.value;
+        return current.value;
     }
 
     public int size() {
